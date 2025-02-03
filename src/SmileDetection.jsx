@@ -54,7 +54,7 @@ const SmileDetection = () => {
           detections.forEach((detection) => {
             const happyExpression = detection.expressions.happy;
 
-            if (happyExpression > 0.7) {
+            if (happyExpression > 0.6) {
               captureImage();
               setOpenDialog(true); // Open the dialog when smile is detected
             }
@@ -85,14 +85,12 @@ const SmileDetection = () => {
 
   return (
     <GradientBackground>
-      <Typography
-        variant="h2"
-        sx={{ fontWeight: "bold", marginBottom: "20px" }}
-      >
-        Smile Detection
-      </Typography>
+       <Typography variant="h2" >
+       Smile Detection
+          </Typography>
+    
 
-      <Typography variant="h6" sx={{ marginBottom: "20px" }}>
+      <Typography variant="h6"  sx={{mb:4}}>
         Look at the camera and smile to capture your image!
       </Typography>
 

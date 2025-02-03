@@ -1,0 +1,74 @@
+/* Fade-in effect for header */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 2s ease-in forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Transcription box */
+  .transcription-box {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    word-break: break-word;
+    margin-bottom: 20px;
+  }
+  
+  /* Instructional text with glow effect */
+  .instructions {
+    margin-top: 30px;
+    text-align: left;
+  }
+  
+  .instructions ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .instructions li {
+    font-size: 1.5rem;
+    margin: 8px 0;
+    
+  }
+  
+  /* Glowing text for "start" commands */
+  .glow {
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px #fff;
+  }
+  
+  /* Glowing text for "don't start" commands */
+  .glow-no {
+    font-weight: bold;
+    color: #E63946;
+    text-shadow: 0 0 10px #E63946;
+  }
+  
+  /* Back button styling */
+  .back-button {
+    margin-top: 30px;
+    background-color: #2C2C54 !important;
+    color: #fff !important;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .back-button:hover {
+    background-color: #1B1B3A !important;
+  }
+  

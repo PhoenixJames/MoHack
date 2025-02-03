@@ -1,44 +1,50 @@
-import React from "react";
-import { Typography, Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Typography, Fab } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import GradientBackground from "./GradientBackground";
+import NavigationIcon from "@mui/icons-material/Navigation";
+import "./Home.css"; // Import custom styles
 
 const Home = () => {
   const navigate = useNavigate();
+  const text = "AI-powered Voice & Face Recognition Hackathon Project";
+  const [displayedText, setDisplayedText] = useState("");
+  const [index, setIndex] = useState(0);
+  const [typingDone, setTypingDone] = useState(false);
+
+  // Typewriter Effect
+  useEffect(() => {
+    if (index < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText((prev) => prev + text[index]);
+        setIndex(index + 1);
+      }, 100); // Adjust speed here
+      return () => clearTimeout(timeout);
+    } else {
+      setTypingDone(true); // Mark typing as done
+    }
+  }, [index, text]);
 
   return (
     <GradientBackground>
-      <Typography
-        variant="h2"
-        sx={{ fontWeight: "bold", marginBottom: "20px" }}
-      >
+      {/* Welcome Text with Fade-in Animation */}
+      <Typography variant="h2" className="fade-in">
         Welcome
       </Typography>
 
-      <Typography variant="h6" sx={{ marginBottom: "40px", opacity: 0.9 }}>
-        AI-powered Voice & Face Recognition Hackathon Project
+      {/* Typewriter Effect */}
+      <Typography  sx={{mt:5}} variant="h6" className={`typewriter ${typingDone ? "done" : ""}`}>
+        {displayedText}
       </Typography>
 
-      <Button
-        variant="contained"
-        size="large"
-        onClick={() => navigate("/dictaphone")}
-        sx={{
-          backgroundColor: "#2C2C54", // Deep Purple
-          color: "#fff",
-          fontSize: "1.2rem",
-          padding: "12px 30px",
-          borderRadius: "8px",
-          fontWeight: "bold",
-          "&:hover": {
-            backgroundColor: "#1B1B3A",
-          },
-        }}
-      >
-        Show
-      </Button>
+      <Fab sx={{mt:7}} variant="extended" onClick={() => navigate("/dictaphone")}>
+        <NavigationIcon sx={{ mr: 1 }} />
+        Navigate
+      </Fab>
     </GradientBackground>
   );
 };
 
 export default Home;
+
+ 

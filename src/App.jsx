@@ -4,6 +4,7 @@ import Home from "./Home";
 import Dictaphone from "./Dictaphone";
 import SmileDetection from "./SmileDetection";
 import Result from "./Result";
+import ByeBye from "./ByeBye";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/dictaphone" element={<Dictaphone />} />
       <Route path="/smile-detection" element={<SmileDetection />} />
       <Route path="/result" element={<Result />} />
+      <Route path="/byebye" element={<ByeBye />} />
     </Routes>
   );
 }
