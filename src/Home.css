@@ -1,4 +1,14 @@
-/* Fade-in effect */
+.lottie-background {
+  position: absolute;
+  top: 50%; /* Vertically center the Lottie animation */
+  left: 50%; /* Horizontally center the Lottie animation */
+  transform: translate(-50%, -50%); /* Adjust the position by 50% of its own width and height */
+  width: 50%; /* Adjust width as needed */
+  height: auto;
+  pointer-events: none; /* Make sure it doesn't block interactions */
+  z-index: -1; /* Ensure it stays behind other elements */
+}
+
 .fade-in {
     opacity: 0;
     animation: fadeIn 2s ease-in forwards;

@@ -53,10 +53,11 @@ const SmileDetection = () => {
         if (detections.length > 0) {
           detections.forEach((detection) => {
             const happyExpression = detection.expressions.happy;
-
-            if (happyExpression > 0.6) {
+console.log(happyExpression);
+            if (happyExpression > 0.4) {
               captureImage();
-              setOpenDialog(true); // Open the dialog when smile is detected
+              
+             
             }
           });
         }
@@ -74,6 +75,12 @@ const SmileDetection = () => {
       setCapturedImage(canvas.toDataURL("image/png"));
     }
   };
+
+  useEffect(() => {
+    if (capturedImage) {
+      navigate("/result", { state: { capturedImage } });
+    }
+  }, [capturedImage, navigate]);
 
   const handleDialogClose = () => {
     setOpenDialog(false);

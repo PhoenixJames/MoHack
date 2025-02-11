@@ -24,8 +24,31 @@ const ResultPage = () => {
     }
   }, [showVoiceRecognition, browserSupportsSpeechRecognition]);
   
+
+    const startListening = async () => {
+        try {
+
+            await SpeechRecognition.startListening({ continuous: true });
+        } catch (error) {
+            window.location.reload();
+            console.error("Failed to start listening:", error);
+        }
+    };
+
+    useEffect(() => {
+        if (!listening) {
+            startListening();
+        }
+    }, [listening]);
+
+    useEffect(() => {
+        startListening();
+        return () => SpeechRecognition.stopListening();
+    }, []);
+
   useEffect(() => {
-    if (transcript.toLowerCase().includes("confirm")) {
+    console.log("Speech recognition",transcript);
+    if (transcript.toLowerCase().includes("confirm") || transcript.toLowerCase().includes("go")) {
       navigate("/byebye");
     } else if (transcript.toLowerCase().includes("cancel")) {
       setShowVoiceRecognition(false);

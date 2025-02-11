@@ -1,12 +1,23 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import Confetti from "react-canvas-confetti";
 import { Typography, Box } from "@mui/material";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const Fireworks = () => {
   const confettiRef = useRef(null);
+  const [showLottie, setShowLottie] = useState(true); // State to control what to display
 
   const getInstance = useCallback((instance) => {
     confettiRef.current = instance;
+  }, []);
+
+  useEffect(() => {
+    // Show the DotLottie animation for 5 seconds, then switch to confetti and message
+    const timer = setTimeout(() => {
+      setShowLottie(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -28,13 +39,15 @@ const Fireworks = () => {
       }
     };
 
-    // Continuous fireworks animation every second
-    const interval = setInterval(() => {
-      makeFireworks();
-    }, 1000);
+    if (!showLottie) {
+      // Continuous fireworks animation every second after DotLottie
+      const interval = setInterval(() => {
+        makeFireworks();
+      }, 1000);
 
-    return () => clearInterval(interval);
-  }, []);
+      return () => clearInterval(interval);
+    }
+  }, [showLottie]);
 
   return (
     <Box
@@ -54,22 +67,36 @@ const Fireworks = () => {
         zIndex: 9999,
       }}
     >
-      {/* Full-screen Confetti */}
-      <Confetti refConfetti={getInstance} style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh" }} />
-
-      {/* Celebration Message */}
-      <Typography
-        variant="h3"
-        sx={{
-          fontWeight: "bold",
-          textShadow: "0px 0px 20px rgba(255, 215, 0, 1)",
-          marginBottom: "20px",
-          animation: "pulse 1.5s infinite",
-        }}
-      >
-        🎉 Congratulations! 🎉
-      </Typography>
-      <Typography variant="h5">You have registered successfully!</Typography>
+      {showLottie ? (
+        <DotLottieReact
+          src="https://lottie.host/0c127883-c804-4e42-ba3f-71523b916a13/1Qdo2QhgWr.lottie"
+          loop
+          autoplay
+          style={{ width: "300px", height: "300px" }}
+        />
+      ) : (
+        <>
+          {/* Full-screen Confetti */}
+          <Confetti
+            refConfetti={getInstance}
+            style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh" }}
+          />
+          {/* Celebration Message */}
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: "bold",
+              textShadow: "0px 0px 20px rgba(255, 215, 0, 1)",
+              marginBottom: "20px",
+              animation: "pulse 1.5s infinite",
+            }}
+          >
+            🎉 Congratulations! 🎉
+          </Typography>
+          <Typography variant="h5">You have registered successfully!</Typography>
+          <Typography variant="h5">We will contact you shortly via e-mail.</Typography>
+        </>
+      )}
     </Box>
   );
 };

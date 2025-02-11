@@ -14,7 +14,7 @@ const GradientBackground = ({ children }) => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        zIndex: 0,
+        zIndex: 99999,
       }}
     >
       {children}
