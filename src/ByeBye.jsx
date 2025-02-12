@@ -3,7 +3,7 @@ import Confetti from "react-canvas-confetti";
 import { Typography, Box } from "@mui/material";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
-const Fireworks = () => {
+const ByeBye = () => {
   const confettiRef = useRef(null);
   const [showLottie, setShowLottie] = useState(true); // State to control what to display
 
@@ -101,4 +101,4 @@ const Fireworks = () => {
   );
 };
 
-export default Fireworks;
+export default ByeBye;

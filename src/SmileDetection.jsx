@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import * as faceapi from "face-api.js";
+//import * as faceapi from "face-api.js";
+import * as faceapi from '@vladmandic/face-api';
+
 import {
   Button,
   Typography,
@@ -8,10 +10,11 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import GradientBackground from "./GradientBackground";
+
+
 
 const SmileDetection = () => {
   const videoRef = useRef(null);
@@ -22,10 +25,17 @@ const SmileDetection = () => {
 
   useEffect(() => {
     const loadModels = async () => {
-      await faceapi.nets.tinyFaceDetector.loadFromUri("/models");
-      await faceapi.nets.faceExpressionNet.loadFromUri("/models");
-      startVideo();
+      try {
+        await Promise.all([
+          faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
+          faceapi.nets.faceExpressionNet.loadFromUri("/models"),
+        ]);
+        startVideo();
+      } catch (error) {
+        console.error("Error loading face-api models:", error);
+      }
     };
+
     loadModels();
   }, []);
 
@@ -53,11 +63,9 @@ const SmileDetection = () => {
         if (detections.length > 0) {
           detections.forEach((detection) => {
             const happyExpression = detection.expressions.happy;
-console.log(happyExpression);
+            console.log("happyExpression",happyExpression)
             if (happyExpression > 0.4) {
               captureImage();
-              
-             
             }
           });
         }
@@ -78,31 +86,17 @@ console.log(happyExpression);
 
   useEffect(() => {
     if (capturedImage) {
-      navigate("/result", { state: { capturedImage } });
+      navigate("/signature", { state: { capturedImage } });
     }
   }, [capturedImage, navigate]);
 
-  const handleDialogClose = () => {
-    setOpenDialog(false);
-  };
-
-  const handleNextPage = () => {
-    navigate("/nextPage", { state: { capturedImage } }); // Navigate to next page with captured image
-  };
-
   return (
     <GradientBackground>
-       <Typography variant="h2" >
-       Smile Detection
-          </Typography>
-    
-
-      <Typography variant="h6"  sx={{mb:4}}>
+      <Typography variant="h2">Smile Detection</Typography>
+      <Typography variant="h6" sx={{ mb: 4 }}>
         Look at the camera and smile to capture your image!
       </Typography>
-
       <Grid container spacing={3} justifyContent="center">
-        {/* Video Section */}
         <Grid
           item
           xs={12}
@@ -130,7 +124,6 @@ console.log(happyExpression);
           </Box>
         </Grid>
       </Grid>
-
       <Dialog
         open={openDialog}
         sx={{

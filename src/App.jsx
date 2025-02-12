@@ -6,6 +6,7 @@ import SmileDetection from "./SmileDetection";
 import Service from "./Service";
 import Information from "./Information";
 import Result from "./Result";
+import Signature from "./Signature";
 import ByeBye from "./ByeBye";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path="/service" element={<Service />} />
       <Route path="/information" element={<Information />} />
       <Route path="/result" element={<Result />} />
+      <Route path="/signature" element={<Signature />} />
       <Route path="/byebye" element={<ByeBye />} />
     </Routes>
   );
