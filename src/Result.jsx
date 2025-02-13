@@ -46,7 +46,7 @@ const Result = () => {
   
   useEffect(() => {
     console.log("Speech recognition", transcript);
-    if (transcript.toLowerCase().includes("confirm") || transcript.toLowerCase().includes("cool") || transcript.toLowerCase().includes("go") || transcript.toLowerCase().includes("call")) {
+    if (transcript.toLowerCase().includes("done")|| transcript.toLowerCase().includes("then") || transcript.toLowerCase().includes("confirm") || transcript.toLowerCase().includes("cool") || transcript.toLowerCase().includes("go") || transcript.toLowerCase().includes("call")) {
       navigate("/byebye");
     } else if (transcript.toLowerCase().includes("cancel")) {
       setShowVoiceRecognition(false);

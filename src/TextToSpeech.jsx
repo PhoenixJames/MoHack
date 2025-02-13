@@ -1,9 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useSpeech, useVoices } from "react-text-to-speech";
+import React, { useState } from "react";
+import { useSpeech } from "react-text-to-speech";
 
 export default function TextToSpeech({ textData }) {
-  const [text, setText] = useState(textData)
-  const { Text, speechStatus, start, pause, stop } = useSpeech({ text: text, lang: 'en-US', voiceURI: 'Microsoft Zira - English (United States)', autoPlay: true, highlightText: true, showOnlyHighlightedText: false, highlightMode: "word" });
+  const [text, setText] = useState(textData);
+
+  const { Text, speechStatus, start, pause, stop } = useSpeech({
+    text,
+    lang: "en-US",
+    voiceURI: "Microsoft Zira - English (United States)",
+    autoPlay: true,
+    highlightText: true,
+    highlightMode: "word",
+    highlightProps: {
+      style: {
+        color: "rgba(255, 255, 255, 0.8)", 
+        backgroundColor: "rgba(0, 0, 0, 0.5)", 
+        padding: "2px 4px",
+        borderRadius: "4px",
+      },
+    },
+  });
 
   return (
     <div style={{ display: "flex", flexDirection: "column", rowGap: "1rem" }}>
