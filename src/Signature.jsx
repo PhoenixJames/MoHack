@@ -8,6 +8,7 @@ import {
   Box,
   Grid,
 } from "@mui/material";
+import TextToSpeech from "./TextToSpeech";
 
 function Signature() {
   const sigCanvasRef = React.useRef();
@@ -36,7 +37,7 @@ function Signature() {
   return (
     <GradientBackground>
       <Typography variant="h4" gutterBottom sx={{mb:10}}>
-        Draw Your Signature
+        <TextToSpeech textData="Please Draw Your Signature" />
       </Typography>
 
       <Grid container spacing={3} justifyContent="center">

@@ -3,6 +3,7 @@ import { Typography, Button, Box, TextField, Grid, Slide } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import GradientBackground from "./GradientBackground";
+import TextToSpeech from "./TextToSpeech";
 
 const Information = () => {
   const location = useLocation();
@@ -87,7 +88,7 @@ const Information = () => {
   return (
     <GradientBackground>
       <Typography variant="h4" sx={{ marginBottom: "20px" }}>
-        Please fill out the following information
+        <TextToSpeech textData="Please fill out the following information" />
       </Typography>
 
       <Grid

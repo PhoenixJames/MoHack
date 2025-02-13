@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import GradientBackground from "./GradientBackground";
+import TextToSpeech from "./TextToSpeech";
 
 
 
@@ -94,7 +95,7 @@ const SmileDetection = () => {
     <GradientBackground>
       <Typography variant="h2">Smile Detection</Typography>
       <Typography variant="h6" sx={{ mb: 4 }}>
-        Look at the camera and smile to capture your image!
+        <TextToSpeech textData="Look at the camera and smile to capture your image!" />
       </Typography>
       <Grid container spacing={3} justifyContent="center">
         <Grid

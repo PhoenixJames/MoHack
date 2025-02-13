@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import GradientBackground from "./GradientBackground";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import "./Dictaphone.css";
+import TextToSpeech from "./TextToSpeech";
 
 const Service = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const Service = () => {
     <GradientBackground>
       <div className="overlay-container">
         <Typography variant="h2" className="fade-in">
-          Which service would you like to have?
+          <TextToSpeech textData="Which service would you like to have?" />
         </Typography>
       </div>
 
