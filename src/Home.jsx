@@ -5,6 +5,7 @@ import GradientBackground from "./GradientBackground";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import "./Home.css"; // Import custom styles
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import TextToSpeech from "./TextToSpeech";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const Home = () => {
         />
       </div>
           <Typography variant="h2" className="fade-in">
-            Welcome To Shwe Bank
+              <TextToSpeech textData="Welcome To Shwe Bank" />
           </Typography>
 
           <Typography sx={{ mt: 5 }} variant="h6" className={`typewriter ${typingDone ? "done" : ""}`}>

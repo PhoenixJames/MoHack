@@ -11,6 +11,41 @@ const Service = () => {
   const navigate = useNavigate();
   const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
+
+  useEffect(() => {
+      const handleKeyPress = (event) => {
+        if (event.code === 'Space') {  
+          event.preventDefault();  
+          resetTranscript();
+          window.location.reload();
+        }
+      };
+  
+      window.addEventListener('keydown', handleKeyPress);
+  
+      return () => {
+        window.removeEventListener('keydown', handleKeyPress);
+      };
+    }, [resetTranscript]);
+
+
+    
+      useEffect(() => {
+        const handleKeyPress = (event) => {
+          if (event.code === 'ArrowRight') {  
+            event.preventDefault();
+            navigate("/information");
+          }
+        };
+    
+        window.addEventListener('keydown', handleKeyPress);
+    
+        return () => {
+          window.removeEventListener('keydown', handleKeyPress);
+        };
+      }, [navigate]);
+    
+
   const startListening = async () => {
     try {
       await SpeechRecognition.startListening({ continuous: true });
@@ -65,11 +100,11 @@ const Service = () => {
         </Typography>
       </Box>
 
-      <Box sx={{ display: "flex", gap: "15px", marginBottom: "20px" }}>
+      {/* <Box sx={{ display: "flex", gap: "15px", marginBottom: "20px" }}>
         <Button variant="contained" onClick={resetTranscript} sx={{ backgroundColor: "transparent", color: "#000" }}>
           Reset
         </Button>
-      </Box>
+      </Box> */}
 
       <Box className="instructions">
         <Typography variant="h6">Please say the following to proceed to the next stage:</Typography>

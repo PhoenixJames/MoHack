@@ -6,8 +6,8 @@ export default function TextToSpeech({ textData }) {
 
   const { Text, speechStatus, start, pause, stop } = useSpeech({
     text,
-    lang: "en-US",
-    voiceURI: "Microsoft Zira - English (United States)",
+    lang: "en-GB",
+    voiceURI: "Google UK English Female",
     autoPlay: true,
     highlightText: true,
     highlightMode: "word",
@@ -21,6 +21,10 @@ export default function TextToSpeech({ textData }) {
     },
   });
 
+
+  
+
+  
   return (
     <div style={{ display: "flex", flexDirection: "column", rowGap: "1rem" }}>
       <Text />

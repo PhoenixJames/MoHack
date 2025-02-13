@@ -65,7 +65,7 @@ const SmileDetection = () => {
           detections.forEach((detection) => {
             const happyExpression = detection.expressions.happy;
             console.log("happyExpression",happyExpression)
-            if (happyExpression > 0.4) {
+            if (happyExpression > 0.7) {
               captureImage();
             }
           });
